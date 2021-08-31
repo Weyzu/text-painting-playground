@@ -1,0 +1,12 @@
+# Generated from CLion C/C++ Code Style settings
+---
+BasedOnStyle: Microsoft
+AccessModifierOffset: 0
+AlignAfterOpenBracket: AlwaysBreak
+BinPackArguments: false
+BinPackParameters: false
+ColumnLimit: 100
+UseTab: Always
+TabWidth: 4
+
+...
