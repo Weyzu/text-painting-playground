@@ -1,8 +1,10 @@
 #pragma once
 
 #include <algorithm>
-#include <string_view>
+#include <cctype>
+#include <string>
 #include <vector>
+
 #include <core/highlight.h>
 
 namespace text_painter::core
@@ -10,8 +12,28 @@ namespace text_painter::core
 
 struct CharacterColors
 {
-	explicit CharacterColors(const std::string_view text)
+	explicit CharacterColors(std::string text)
 	{
+		std::transform(
+			text.begin(),
+			text.end(),
+			text.begin(),
+			[](char c) -> char
+			{
+				return (c == (char)'\u00C2') || c < 0 ? ' ': c;
+			}
+		);
+		text.erase(
+			std::remove_if(
+				text.begin(), text.end(),
+				[](char c)
+				{
+					return std::iscntrl(c);
+				}
+			),
+			text.end()
+		);
+
 		this->characters_ = std::vector<char>(text.begin(), text.end());
 		this->colors_.reserve(this->characters_.size());
 
