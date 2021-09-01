@@ -29,7 +29,6 @@ import {
   defineComponent,
   ref,
 } from 'vue'
-import { useStore } from '../main'
 import { mapGetters } from 'vuex'
 
 export default defineComponent({
@@ -38,13 +37,13 @@ export default defineComponent({
   emits: ['input'],
   computed: mapGetters(['text', 'textColors']),
 
-  setup(_, { emit }) {
+  setup() {
     const root = ref(null);
     const subRoot = ref(null);
-    const store = useStore();
 
-    const handleInput = (event: Event) => {
+    const handleInput = () => {
         // @ts-ignore
+        // eslint-disable-next-line no-undef
         OnInputEvent(root.value.innerText);
     }
 
