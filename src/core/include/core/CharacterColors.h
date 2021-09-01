@@ -20,7 +20,7 @@ struct CharacterColors
 			text.begin(),
 			[](char c) -> char
 			{
-				return (c == (char)'\u00C2') || c < 0 ? ' ': c;
+				return (c == (char)u'\u00C2') || c < 0 ? ' ': c;
 			}
 		);
 		text.erase(
